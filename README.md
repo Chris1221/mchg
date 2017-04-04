@@ -8,6 +8,8 @@ Depends:
 - [plink1.07](http://zzz.bwh.harvard.edu/plink/)
 - [snptest](https://mathgen.stats.ox.ac.uk/genetics_software/snptest/snptest.html)
 
+### 
+
 ### Plans for development
 
 The first priority is to understand how to take input arguements and parse them. We have a lot of parameters that need to be incorporated unfortuantely.
@@ -37,7 +39,22 @@ Variables:
 	- `std::string`
 - `$OUTPUT_STREAM`: File path to the output stream for depositing summary statistics.
 	- `std::string`
-- `$HERITABILITY`: 
+- `$HERITABILITY`: The heritability of the simulated condition.
+	- `double` in [0,1]
+- `$PERCENT_CAUSAL`: Percent of the causal variants to be included in the second strata. 
+	- `double` in [0,1] 
+- `$PERCENT_NON_CAUSAL`: Percent of the non-causal variants to be included in the second strata.
+	- `double` in [0,1]
+	- I know these two are confusing, but couldn't think of a better way to do this.
+- `$NUMBER_CAUSAL`: Number of causal SNPs to be simulated
+	- `int`
+- `$MAF`: Simulate based on MAF bins or not
+	- `bool`
+- `$MAF_RANGE`: Vector of length two; lower end of the MAF and upper end of the MAF bin to be generated. 
+	- `arma::vec`
+- `$NREP`: Number of permutations to  perform
+	- `int`
+
 
 
 Secondly 
