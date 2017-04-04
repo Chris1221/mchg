@@ -8,7 +8,12 @@ Depends:
 - [plink1.07](http://zzz.bwh.harvard.edu/plink/)
 - [snptest](https://mathgen.stats.ox.ac.uk/genetics_software/snptest/snptest.html)
 
-### 
+### Explaination of Logic
+
+The goal of this program is to take a genome (simulated using `HapGen2` off of a 1KG reference genome), superimpose an imaginary genetic condition, blind ourselves to the basis of this condition and attempt to identify the contributing variants through association analysis.  We can then use different multiple comparrisons techniques and attempt to identify 
+
+i. Methods which identify more true positives while maintaining FDR or FWER
+ii. Contributing covariates to the disovery of variants
 
 ### Plans for development
 
