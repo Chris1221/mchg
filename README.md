@@ -12,8 +12,10 @@ Depends:
 
 The goal of this program is to take a genome (simulated using `HapGen2` off of a 1KG reference genome), superimpose an imaginary genetic condition, blind ourselves to the basis of this condition and attempt to identify the contributing variants through association analysis.  We can then use different multiple comparrisons techniques and attempt to identify 
 
-i. Methods which identify more true positives while maintaining FDR or FWER
-ii. Contributing covariates to the disovery of variants
+1. Methods which identify more true positives while maintaining FDR or FWER
+2. Contributing covariates to the disovery of variants
+
+Full details of the implimentation may be found in the associated preprint -- please contact the maintainors for a current version. 
 
 ### Plans for development
 
