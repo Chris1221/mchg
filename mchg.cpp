@@ -20,17 +20,17 @@ int main( int argc,
     int nrep = 1; 
     
     cout << 
-	"@ ----------------------------------------- @ \n" <<
+	"@ ------------------------------------------ @ \n" <<
 	"|  				             | \n" <<
 	"|    	      Multiple Comparrisons          | \n" <<
-	"|             in the Human Genome           | \n" <<
+	"|             in the Human Genome            | \n" <<
 	"|   					     | \n" <<
 	"|          Website and Quick Start:	     | \n" <<
-	"|      https://github.com/Chris1221/mchg    | \n" <<
+	"|      https://github.com/Chris1221/mchg     | \n" <<
 	"| 				             | \n" <<
 	"|            Christpher Cole 2017	     | \n" <<
 	"|					     | \n" <<
-	"@ ----------------------------------------- @ \n" << "\n";
+	"@ ------------------------------------------ @ \n" << "\n";
 
     time_t current_time;
     char* c_time_string;
@@ -76,5 +76,5 @@ int main( int argc,
     current_time = time(NULL);
     c_time_string = ctime(&current_time);
 
-    cout << "Analysis started at " << c_time_string << "\n";
+    cout << "Analysis started at " << c_time_string << "\n";`
 }
