@@ -1,6 +1,7 @@
 #include <iostream>
-#include <armadillo>
+#include <Eigen/Dense>
 #include <time.h>
+#include "mchg_read_utils.h"
 
 using namespace std;
 int main( int argc,
@@ -76,5 +77,8 @@ int main( int argc,
     current_time = time(NULL);
     c_time_string = ctime(&current_time);
 
-    cout << "Analysis started at " << c_time_string << "\n";`
+    cout << "Analysis started at " << c_time_string << "\n";
+
+    Eigen::MatrixXd test = parse_bed(std::string(gen), 100, 100);
+
 }
