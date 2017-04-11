@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include <time.h>
-#include "mchg_read_utils.h"
+#include "../include/mchg_read_utils.h"
 
 using namespace std;
 int main( int argc,

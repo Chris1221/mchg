@@ -12,7 +12,7 @@
 # 		By default when make is invoked
 # 		clean the directory of all output and
 # 		make the binary
-all: clean mchg
+all: clean bin/mchg
 #
 #	(clean) Clean the directory:
 #		Get rid of intermediary steps
@@ -45,12 +45,14 @@ CFLAGS = -I /usr/include/eigen3
 #	(mchg_read_utils.o) Read object:
 #		Compile functions for reading 
 #		genetic files.
-mchg_read_utils.o: mchg_read_utils.cpp
+build/mchg_read_utils.o: src/mchg_read_utils.cpp
+	mkdir -p build/
 	g++ $(CFLAGS) -c $< -o build/mchg_read_utils.o
 #
 #	(mchg.o) Object for (main):
 #		Compile the main function
-mchg.o: mchg.cpp
+build/mchg.o: src/mchg.cpp
+	mkdir -p build/
 	g++ $(CFLAGS) -c $< -o build/mchg.o
 #
 # -------------------------------------------	
@@ -61,8 +63,8 @@ mchg.o: mchg.cpp
 #
 #	(mchg) Compile the main program
 #		This is the main binary output of this program
-mchg: build/mchg_read_utils.o build/mchg.o
-	g++ $(CFLAGS) -o mchg $^
+bin/mchg: build/mchg_read_utils.o build/mchg.o
+	g++ $(CFLAGS) -o bin/mchg $^
 #
 # ----------------------------------------------
 # 		TEST TARGETS
@@ -78,8 +80,8 @@ data/toy.bed data/toy.bim data/toy.fam: data/toy.ped data/toy.map
 #	(test): Test the function 
 #		This is the test function to make sure everything works.
 #
-test: clean mchg	
-	./mchg --gen data/toy.bed \
+test: clean bin/mchg	
+	bin/mchg --gen data/toy.bed \
 		--summary SUMMARY.summary \
 		--output OUTPUT.txt
 #
