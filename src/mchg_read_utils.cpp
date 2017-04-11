@@ -96,6 +96,4 @@ Eigen::MatrixXd parse_bed ( std::string input, // The file path and prefix to th
 	return results;
 }
 
-
-
-
+# parse fam here
