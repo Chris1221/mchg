@@ -19,7 +19,7 @@ all: clean mchg
 #		and intermediary object files.
 #		Prepare for full make
 clean:
-	rm -f mchg mchg_read_utils.o mchg.o
+	rm -rf build/
 #
 #	(git) Prepare the repo for committing:
 #		First clean then add in all the files.
@@ -46,12 +46,12 @@ CFLAGS = -I /usr/include/eigen3
 #		Compile functions for reading 
 #		genetic files.
 mchg_read_utils.o: mchg_read_utils.cpp
-	g++ $(CFLAGS) -c $<
+	g++ $(CFLAGS) -c $< -o build/mchg_read_utils.o
 #
 #	(mchg.o) Object for (main):
 #		Compile the main function
 mchg.o: mchg.cpp
-	g++ $(CFLAGS) -c $<
+	g++ $(CFLAGS) -c $< -o build/mchg.o
 #
 # -------------------------------------------	
 #	
@@ -61,8 +61,8 @@ mchg.o: mchg.cpp
 #
 #	(mchg) Compile the main program
 #		This is the main binary output of this program
-mchg: mchg_read_utils.o mchg.o
-	g++ $(CFLAGS) -o mchg mchg.o mchg_read_utils.o
+mchg: build/mchg_read_utils.o build/mchg.o
+	g++ $(CFLAGS) -o mchg $^
 #
 # ----------------------------------------------
 # 		TEST TARGETS
