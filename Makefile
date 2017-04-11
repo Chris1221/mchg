@@ -21,6 +21,11 @@ all: clean mchg
 clean:
 	rm -f mchg mchg_read_utils.o mchg.o
 #
+#	(git) Prepare the repo for committing:
+#		First clean then add in all the files.
+git: clean
+	git add -A
+#
 # --------------------------------------------
 #
 # 		FLAG TARGETS

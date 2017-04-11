@@ -81,6 +81,7 @@ int main( int argc,
 
     Eigen::MatrixXd test = parse_bed(std::string(gen), 4, 2);
 
+    std::cout << "\tGenetic data (SNP x ID):" << std::endl;
     std::cout << test << std::endl;
 
 }

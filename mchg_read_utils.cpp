@@ -21,7 +21,7 @@ Eigen::MatrixXd parse_bed ( std::string input, // The file path and prefix to th
 
 	// Make the output matrix	
 	Eigen::MatrixXd results(n_snp, n_id); // maybe have to convert to unsigned
-	//results.fill(0);
+	//resuts.fill(0);
 	
 	// Def the stream
 	std::ifstream in(input.c_str(), std::ios::binary);
