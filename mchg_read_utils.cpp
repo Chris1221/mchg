@@ -15,7 +15,7 @@ Eigen::MatrixXd parse_bed ( std::string input, // The file path and prefix to th
 	using namespace std;
 	// Define some counters
 	int count = 0; // Which byte are we on
-	int snp = 0; // Number of SNP so far (if snp hits n then we need to go back down again)
+	int id = 0; // Number of SNP so far (if snp hits n then we need to go back down again)
 	//arma::uword n_u = n; // unsigned n, used for constructing matrix
 	int which_snp = 0; // unsigned SNP
 
@@ -55,9 +55,19 @@ Eigen::MatrixXd parse_bed ( std::string input, // The file path and prefix to th
 			// ! -------------------- ! //
 			//	CHECK SNP COUNT     //
 			// ! -------------------- ! //		
-				
-			if( (snp - n_snp) == 0) {
-				snp = 0;
+			
+			// This effectivly checks if the number of SNPs has hit the maximum
+			// but does not check if it's used up within a byte
+			//
+			// It worked before becuase it was symetric 
+			// 	Same number of snps and people.
+			// 	so they would be used up at the same time.
+			//
+			// To do this: 
+			// 	i. maybe while snp  < individual
+
+			if( (id - n_id) == 0) {
+				id = 0;
 				which_snp = which_snp+1;
 				break;
 			} // If hit the number of SNPs then skip the rest of the byte	
@@ -74,10 +84,10 @@ Eigen::MatrixXd parse_bed ( std::string input, // The file path and prefix to th
 				throw std::invalid_argument( "Non binary input or improper input." );
 			}
 		
-			results(snp, which_snp) = gen;
+			results(which_snp, id) = gen;
 
 			
-			snp++; // On first snp counter is going to be 1	
+			id++; // On first snp counter is going to be 1	
 				
 	
 		}	

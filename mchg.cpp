@@ -79,6 +79,8 @@ int main( int argc,
 
     cout << "Analysis started at " << c_time_string << "\n";
 
-    Eigen::MatrixXd test = parse_bed(std::string(gen), 100, 100);
+    Eigen::MatrixXd test = parse_bed(std::string(gen), 4, 2);
+
+    std::cout << test << std::endl;
 
 }
