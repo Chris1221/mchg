@@ -2,6 +2,7 @@
 #include <Eigen/Dense>
 #include <time.h>
 #include "../include/mchg_read_utils.h"
+#include "../include/mchg_calculation_utils.h"
 
 using namespace std;
 int main( int argc,
@@ -9,7 +10,7 @@ int main( int argc,
 	  char *envp[] )
 {
     int count;  
-    char* gen = NULL;
+    char* bfile = NULL;
     char* summary = NULL;
     char* output = NULL;
     double h2 = 0.5;
@@ -23,22 +24,24 @@ int main( int argc,
     cout << 
 	"@ ------------------------------------------ @ \n" <<
 	"|  				             | \n" <<
-	"|    	      Multiple Comparrisons          | \n" <<
+	"|    	      Multiple Comparisons           | \n" <<
 	"|             in the Human Genome            | \n" <<
 	"|   					     | \n" <<
 	"|          Website and Quick Start:	     | \n" <<
 	"|      https://github.com/Chris1221/mchg     | \n" <<
 	"| 				             | \n" <<
 	"|            Christpher Cole 2017	     | \n" <<
-	"|					     | \n" <<
+	"| 				             | \n" <<
+	"|  !--------------------------------------!  | \n" <<
+	"|         April 2017     |   Alpha 1.0       | \n" <<
 	"@ ------------------------------------------ @ \n" << "\n";
 
     time_t current_time;
     char* c_time_string;
 
     for (count = 1; count < argc; count+=2 )
-	if( ! strcmp(argv[count], "--gen") ){
-		gen = argv[count+1];
+	if( ! strcmp(argv[count], "--bfile") ){
+		bfile = argv[count+1];
 	}else if( ! strcmp(argv[count], "--summary") ){
 		summary = argv[count+1];
 	}else if( ! strcmp(argv[count], "--output") ){
@@ -63,7 +66,7 @@ int main( int argc,
 	}
 
     cout << "Input options: " << "\n" <<
-	    "    .gen file: \t \t" << gen << "\n" <<
+	    "    Plink file: \t" << bfile << "\n" <<
 	    "    .summary file: \t" << summary << "\n\n" <<
 	    "    Heritability: \t" << h2 << "\n" <<
 	    "    % Causal: \t\t" << pc << "\n" <<
@@ -79,9 +82,25 @@ int main( int argc,
 
     cout << "Analysis started at " << c_time_string << "\n";
 
-    Eigen::MatrixXd test = parse_bed(std::string(gen), 4, 2);
+    // Calculate the Number of people from the number of
+    // 		lines in the .fam file
+    //
+    // And the number of SNPs from the .bim file
+    int n_id = parse_fam ( std::string(bfile) );
+    int n_snp = parse_bim ( std::string(bfile) );
 
+    // Read in the binary genetic file into a matrix
+    // 		Use this for regression going forward.
+    Eigen::MatrixXd genMat = parse_bed(std::string(bfile), n_snp, n_id );
+
+    // Echo out the genetic matrix 
+    // 		But don't do this when it gets bigger.
     std::cout << "\tGenetic data (SNP x ID):" << std::endl;
-    std::cout << test << std::endl;
+    std::cout << genMat << std::endl;
 
+    // Im just demoing this
+    Eigen::VectorXf mafVec = calculate_maf ( genMat ); 
+
+    std::cout << "\n\tMinor Allele Frequency Vector: \n" << std::endl;
+    std::cout << mafVec << std::endl;
 }

@@ -19,12 +19,14 @@ Eigen::MatrixXd parse_bed ( std::string input, // The file path and prefix to th
 	//arma::uword n_u = n; // unsigned n, used for constructing matrix
 	int which_snp = 0; // unsigned SNP
 
+	std::string input_bed = input  + ".bed";
+
 	// Make the output matrix	
 	Eigen::MatrixXd results(n_snp, n_id); // maybe have to convert to unsigned
 	//resuts.fill(0);
 	
 	// Def the stream
-	std::ifstream in(input.c_str(), std::ios::binary);
+	std::ifstream in(input_bed.c_str(), std::ios::binary);
 
 	// Init the charcater and open the stream
 	char c;
@@ -96,4 +98,40 @@ Eigen::MatrixXd parse_bed ( std::string input, // The file path and prefix to th
 	return results;
 }
 
-# parse fam here
+// Calculate the number of people in the fam file to use the above function.
+int parse_fam ( std::string input ){
+
+	int count = 0;
+
+	std::string fam_file = input + ".fam";
+	
+	std::ifstream in(fam_file.c_str());
+
+	std::string c;
+	while ( std::getline (in, c ) ) {
+
+		count++;
+		
+	}
+
+	return count;
+}
+
+// Calculate the number of SNPs in the bim file to use the above function.
+int parse_bim ( std::string input ){
+
+	int count = 0;
+
+	std::string fam_file = input + ".bim";
+	
+	std::ifstream in(fam_file.c_str());
+
+	std::string c;
+	while ( std::getline (in, c ) ) {
+
+		count++;
+		
+	}
+
+	return count;
+}

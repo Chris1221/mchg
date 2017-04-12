@@ -47,14 +47,20 @@ CFLAGS = -I lib/eigen3
 #		genetic files.
 build/mchg_read_utils.o: src/mchg_read_utils.cpp
 	mkdir -p build/
-	g++ $(CFLAGS) -c $< -o build/mchg_read_utils.o
+	g++ $(CFLAGS) -c $< -o $@
 #
 #	(mchg.o) Object for (main):
 #		Compile the main function
 build/mchg.o: src/mchg.cpp
 	mkdir -p build/
-	g++ $(CFLAGS) -c $< -o build/mchg.o
+	g++ $(CFLAGS) -c $< -o $@
 #
+#	(mchg_calculation_utils.o)
+#		Compiles calculation helper functions
+build/mchg_calculation_utils.o: src/mchg_calculation_utils.cpp
+	mkdir -p build/
+	g++ $(CFLAGS) -c $< -o $@
+
 # -------------------------------------------	
 #	
 #	!!!	MAIN TARGETS	!!!
@@ -63,7 +69,7 @@ build/mchg.o: src/mchg.cpp
 #
 #	(mchg) Compile the main program
 #		This is the main binary output of this program
-bin/mchg: build/mchg_read_utils.o build/mchg.o
+bin/mchg: build/mchg_read_utils.o build/mchg_calculation_utils.o build/mchg.o
 	g++ $(CFLAGS) -o bin/mchg $^
 #
 # ----------------------------------------------
@@ -81,7 +87,7 @@ data/toy.bed data/toy.bim data/toy.fam: data/toy.ped data/toy.map
 #		This is the test function to make sure everything works.
 #
 test: clean bin/mchg	
-	bin/mchg --gen data/toy.bed \
+	bin/mchg --bfile data/toy \
 		--summary SUMMARY.summary \
 		--output OUTPUT.txt
 #
