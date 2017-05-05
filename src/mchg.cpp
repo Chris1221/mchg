@@ -5,6 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include "../include/mchg_read_utils.h"
 #include "../include/mchg_calculation_utils.h"
+#include "../include/utils.h"
 
 using namespace std;
 int main( int argc,
@@ -125,6 +126,9 @@ int main( int argc,
     // 
     // - Simulate causal SNPs
     // 		- Need nc causal loci between MAF low and MAF high
+
+
+
     // - Subset to only look at the causal SNPs
     // - Calculate the weighted allele score
     // - Calculate phenotype
