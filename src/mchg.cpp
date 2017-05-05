@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include <time.h>
+#include "../lib/string.hpp"
 #include "../include/mchg_read_utils.h"
 #include "../include/mchg_calculation_utils.h"
 
@@ -109,7 +110,10 @@ int main( int argc,
     // - Simulate causal SNPs
     // 		- Need nc causal loci between MAF low and MAF high
 
-    
+    std::vector<std::string> mafs;
+    boost::split(mafs, maf_range, boost::is_any_of("-"));
+
+    std::cout << mafs << std::endl;
 
     // - Subset to only look at the causal SNPs
     // - Calculate the weighted allele score

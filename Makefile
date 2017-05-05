@@ -89,6 +89,7 @@ data/toy.bed data/toy.bim data/toy.fam: data/toy.ped data/toy.map
 test: clean bin/mchg	
 	bin/mchg --bfile data/toy \
 		--summary SUMMARY.summary \
-		--output OUTPUT.txt
+		--output OUTPUT.txt \
+		--maf-range 0.10-0.20
 #
 # -------------------------------------------------
