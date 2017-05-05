@@ -60,6 +60,12 @@ build/mchg.o: src/mchg.cpp
 build/mchg_calculation_utils.o: src/mchg_calculation_utils.cpp
 	mkdir -p build/
 	g++ $(CFLAGS) -c $< -o $@
+#
+#	(utils.o)
+#		Misc utils
+build/utils.o: src/utils.cpp
+	mkdir -p build/
+	g++ $(CFLAGS) -c $< -o $@
 
 # -------------------------------------------	
 #	
@@ -69,7 +75,7 @@ build/mchg_calculation_utils.o: src/mchg_calculation_utils.cpp
 #
 #	(mchg) Compile the main program
 #		This is the main binary output of this program
-bin/mchg: build/mchg_read_utils.o build/mchg_calculation_utils.o build/mchg.o
+bin/mchg: build/mchg_read_utils.o build/mchg_calculation_utils.o build/utils.o build/mchg.o
 	g++ $(CFLAGS) -o bin/mchg $^
 #
 # ----------------------------------------------

@@ -8,6 +8,7 @@
 #include "../include/utils.h"
 
 using namespace std;
+
 int main( int argc,
 	  char *argv[],
 	  char *envp[] )
@@ -126,9 +127,21 @@ int main( int argc,
     // 
     // - Simulate causal SNPs
     // 		- Need nc causal loci between MAF low and MAF high
+    //		- Find which elements of mafVec are between the MAF ranges
+    //		- Find which of these are TRUE 
+    //		- Shuffle this vector
+    //		- Take the first nc
+    //		- Use this to index genMat
+	
+    std::vector<bool> boolmafVec(mafVec.size());
+
+    for(int i = 0; i < mafVec.size(); i++) {
 
 
 
+    }
+
+    
     // - Subset to only look at the causal SNPs
     // - Calculate the weighted allele score
     // - Calculate phenotype
