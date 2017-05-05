@@ -96,6 +96,6 @@ test: clean bin/mchg
 	bin/mchg --bfile data/toy \
 		--summary SUMMARY.summary \
 		--output OUTPUT.txt \
-		--maf-range 0.40-0.60
+		--maf-range 0.40-0.80
 #
 # -------------------------------------------------
