@@ -103,4 +103,18 @@ int main( int argc,
 
     std::cout << "\n\tMinor Allele Frequency Vector: \n" << std::endl;
     std::cout << mafVec << std::endl;
+
+    // Alright so next things
+    // 
+    // - Simulate causal SNPs
+    // 		- Need nc causal loci between MAF low and MAF high
+
+    
+
+    // - Subset to only look at the causal SNPs
+    // - Calculate the weighted allele score
+    // - Calculate phenotype
+    // - Associate (do GWAS)
+    // - Stratify 
+    // - Write out
 }
