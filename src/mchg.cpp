@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Eigen/Dense>
+#include <vector>
 #include <time.h>
 #include <boost/algorithm/string.hpp>
 #include "../include/mchg_read_utils.h"
@@ -21,7 +22,9 @@ int main( int argc,
     bool maf = false; 
     double maf_range = 0;
     int nrep = 1; 
-    
+   
+    using namespace std;
+
     cout << 
 	"@ ------------------------------------------ @ \n" <<
 	"|  				             | \n" <<
@@ -58,7 +61,7 @@ int main( int argc,
 	}else if( ! strcmp(argv[count], "--maf") ){
 		maf = strcmp(argv[count+1],"true");
 	}else if( ! strcmp(argv[count], "--maf-range") ){
-		maf_range = strtod(argv[count+1], NULL);
+		maf_range = argv[count+1];
 	}else if( ! strcmp(argv[count], "--nrep") ){
 		nrep = strtod(argv[count+1], NULL);
 	} else {
@@ -113,7 +116,7 @@ int main( int argc,
     std::vector<std::string> mafs;
     boost::split(mafs, maf_range, boost::is_any_of("-"));
 
-    std::cout << mafs << std::endl;
+    //std::cout << mafs << std::endl;
 
     // - Subset to only look at the causal SNPs
     // - Calculate the weighted allele score
