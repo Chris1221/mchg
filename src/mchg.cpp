@@ -20,7 +20,7 @@ int main( int argc,
     double pnc = 0.5;
     double nc = 0.5;
     bool maf = false; 
-    double maf_range = 0;
+    char* maf_range = NULL;
     int nrep = 1; 
    
     using namespace std;
@@ -68,6 +68,19 @@ int main( int argc,
 		cout << "\n" << argv[count] << " is an unrecognized tag, please read the documentation for more details." << "\n";
 		exit(EXIT_FAILURE);
 	}
+ 
+    // Parsing command options
+    //
+    // 	Converting maf-range from double-double to two doubles
+    std::string maf_range2(maf_range);
+    std::vector<std::string> mafs;
+    boost::split(mafs, maf_range2, boost::is_any_of("-"));
+    double maf_lower = std::stod(mafs[0]);
+    double maf_higher = std::stod(mafs[1]);
+ 
+    //std::cout << "\n" << maf_lower << endl;
+    //std::cout << maf_higher << endl;
+
 
     cout << "Input options: " << "\n" <<
 	    "    Plink file: \t" << bfile << "\n" <<
@@ -77,7 +90,7 @@ int main( int argc,
     	    "    % Non-Causal: \t" << pnc << "\n" <<
 	    "    Number of Causal: \t" << nc << "\n\n" <<
 	    "    MAF: \t\t" << maf << "\n" <<
-	    "    MAF Range: \t\t" << maf_range << "\n\n" <<
+	    "    MAF Range: \t\t" << maf_lower << "-" <<  maf_higher << "\n\n" <<
 	    "    # Permuations: \t" << nrep << "\n\n" <<
 	    "    Output File: \t" << output << "\n\n";
 	
@@ -112,12 +125,6 @@ int main( int argc,
     // 
     // - Simulate causal SNPs
     // 		- Need nc causal loci between MAF low and MAF high
-
-    std::vector<std::string> mafs;
-    boost::split(mafs, maf_range, boost::is_any_of("-"));
-
-    //std::cout << mafs << std::endl;
-
     // - Subset to only look at the causal SNPs
     // - Calculate the weighted allele score
     // - Calculate phenotype
