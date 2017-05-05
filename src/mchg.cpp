@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include <time.h>
-#include "../lib/string.hpp"
+#include <boost/algorithm/string.hpp>
 #include "../include/mchg_read_utils.h"
 #include "../include/mchg_calculation_utils.h"
 

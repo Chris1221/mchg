@@ -35,7 +35,7 @@ git: clean
 # 	(CFLAGS) Compile Flags:
 # 		Include the eigen library
 # 		This target is DYNAMIC.
-CFLAGS = -I lib/eigen3 
+CFLAGS = -I lib/eigen3 -I lib/boost_1_61_0/
 #
 # -------------------------------------------
 # 		INTERMEDIARY 
