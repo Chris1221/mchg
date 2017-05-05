@@ -35,7 +35,7 @@ git: clean
 # 	(CFLAGS) Compile Flags:
 # 		Include the eigen library
 # 		This target is DYNAMIC.
-CFLAGS = -I lib/eigen3 -I lib/boost_1_61_0/ -I lib/libigl
+CFLAGS = -I lib/eigen3 -I lib/boost_1_61_0/ -I lib/libigl/include
 #
 # -------------------------------------------
 # 		INTERMEDIARY 
@@ -96,6 +96,6 @@ test: clean bin/mchg
 	bin/mchg --bfile data/toy \
 		--summary SUMMARY.summary \
 		--output OUTPUT.txt \
-		--maf-range 0.10-0.20
+		--maf-range 0.40-0.60
 #
 # -------------------------------------------------
