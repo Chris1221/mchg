@@ -136,6 +136,7 @@ int main( int argc,
 	
     std::vector<int> intmafVec;
     std::cout << "\nIndices which are within MAF range\n" << endl;
+
     for(int i = 0; i < mafVec.size(); i++) {
 
 	    if(mafVec(i) < maf_higher && mafVec(i) > maf_lower) {
@@ -144,23 +145,17 @@ int main( int argc,
 	    }
 
     }
-
     //	Shuffle the matrix to get a random number
     std::random_shuffle (intmafVec.begin(), intmafVec.end() );
 
     std::cout <<  "\nShuffled vector\n" << endl;
-
     Eigen::VectorXi ind = Eigen::VectorXi::Map(intmafVec.data(), intmafVec.size());
-
     std::cout << ind << endl;
 
     std::cout << "\nSubset of genetic data which have MAF within range\n" << endl;
-
     Eigen::MatrixXd mafgenMat;
-
     igl::slice(genMat, ind, 1,  mafgenMat);
-
-    std::cout << mafgenMat  << endl;
+    std::cout << mafgenMat << endl;
     
     // - Subset to only look at the causal SNPs
     // - Calculate the weighted allele score
