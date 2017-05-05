@@ -133,11 +133,11 @@ int main( int argc,
     //		- Take the first nc
     //		- Use this to index genMat
 	
-    std::vector<bool> boolmafVec(mafVec.size());
+    std::vector<int> intmafVec;
 
     for(int i = 0; i < mafVec.size(); i++) {
 
-
+	    if(mafVec < maf_higher & mafVec > maf_lower) intmafVec.push_back(i);
 
     }
 
